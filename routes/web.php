@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Admin\QuizController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,11 +13,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/panel', function () {
 
 /* Admin Operations */
 
-Route::group([
-    'middleware' => ['auth','isAdmin'],
-    'prefix' => 'admin'
-], function (){
-    Route::get('deneme', function () {
-        return 'Test';
-    });
+Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], function () {
+    Route::resource('quizzes', QuizController::class);
 });
