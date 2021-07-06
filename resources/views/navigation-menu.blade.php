@@ -101,19 +101,20 @@
                                 </span>
                             @endif
                         </x-slot>
-
                         <x-slot name="content">
+                            {{-- Admin İşlemleri --}}
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Manage Admin') }}
+                            </div>
+                            @if (auth()->user()->type == 'admin')
+                                <x-jet-dropdown-link href="{{ route('quizzes.index') }}">
+                                    Quizler
+                                </x-jet-dropdown-link>
+                            @endif
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
-
-                            @if (auth()->user()->type == 'admin')
-
-                                <x-jet-dropdown-link href="{{ route('quizzes.index') }}">
-                                    Admin İşlemleri
-                                </x-jet-dropdown-link>
-                            @endif
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Profile') }}
