@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\QuizCreateRequest;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::paginate(5);
+        $quizzes = Quiz::orderBy('created_at','DESC')->paginate(5);
         return view('admin.quiz.list', compact('quizzes'));
     }
 
@@ -35,9 +36,10 @@ class QuizController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(QuizCreateRequest $request)
     {
-        //        dd($request->post());
+       Quiz::create($request->post());
+       return redirect()->route('quizzes.index')->withSuccess('Quiz Başarıyla Oluşturuldu!');
     }
 
     /**
