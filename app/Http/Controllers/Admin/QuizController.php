@@ -17,7 +17,7 @@ class QuizController extends Controller
      */
     public function index()
     {
-        $quizzes = Quiz::orderBy('updated_at','DESC')->paginate(5);
+        $quizzes = Quiz::orderBy('updated_at', 'DESC')->paginate(5);
         return view('admin.quiz.list', compact('quizzes'));
     }
 
@@ -39,8 +39,8 @@ class QuizController extends Controller
      */
     public function store(QuizCreateRequest $request)
     {
-       Quiz::create($request->post());
-       return redirect()->route('quizzes.index')->withSuccess('Quiz Başarıyla Oluşturuldu!');
+        Quiz::create($request->post());
+        return redirect()->route('quizzes.index')->withSuccess('Quiz Başarıyla Oluşturuldu!');
     }
 
     /**
@@ -62,8 +62,8 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        $quiz = Quiz::find($id) ?? abort(404,'Böyle Bir Quiz Bulunamadı!');
-        return view('admin.quiz.edit',compact('quiz'));
+        $quiz = Quiz::find($id) ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
+        return view('admin.quiz.edit', compact('quiz'));
     }
 
     /**
@@ -75,8 +75,15 @@ class QuizController extends Controller
      */
     public function update(QuizUpdateRequest $request, $id)
     {
-        Quiz::find($id) ?? abort(404,'Böyle Bir Quiz Bulunamadı!');
-        Quiz::where('id',$id)->update($request->except(['_method','_token']));
+        $quiz = Quiz::find($id) ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
+        
+        if ($request->isFinished) $quiz->finished_at = $request->finished_at;
+        else $quiz->finished_at = null;      
+        if($request->description) $quiz->description = $request->description;
+     
+        $quiz->title = $request->title;
+        $quiz->save();
+
         return redirect()->route('quizzes.index')->withSuccess('Quiz Başarıyla Düzenlendi!');
     }
 
@@ -88,6 +95,8 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        return redirect()->back();
+        $quiz = Quiz::find($id) ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
+        $quiz->delete();
+        return redirect()->route('quizzes.index')->withSuccess('Quiz Başarıyla Silindi!');;
     }
 }

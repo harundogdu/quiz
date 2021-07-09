@@ -42,15 +42,19 @@
                                         <span>Sona Erme Tarihi Yok</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="{{ route('quizzes.edit', $value->id) }}" class="btn btn-sm btn-secondary"
-                                        title="Edit Quiz">
+                                <td class="clearfix">
+                                    <a style="float:left;" href="{{ route('quizzes.edit', $value->id) }}"
+                                        class="mx-1 btn btn-sm btn-secondary" title="Edit Quiz">
                                         <i class="text-white fa fa-pen"></i>
                                     </a>
-                                    <a href="{{ route('quizzes.destroy', $value->id) }}" class="btn btn-sm btn-danger"
-                                        title="Delete Quiz">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
+                                    <form style="float:left;" action="{{ route('quizzes.destroy', $value->id) }}"
+                                        method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="mx-1 btn btn-sm btn-danger" title="Delete Quiz">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
