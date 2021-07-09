@@ -10,8 +10,8 @@
                     <tr>
                         <th>Quiz Adı</th>
                         <th>Quiz Durumu</th>
-                        <th>Quiz Oluşturulma Tarihi</th>
-                        <th>Quiz Sona Erme Tarihi</th>
+                        <th>Quiz Son İşlem Zamanı</th>
+                        <th>Quiz Sona Erme Zamanı</th>
                         <th>Quiz Eylemleri</th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                                     @endphp
                                     <span class="{{ $textErr }}"><b>{{ $value->status }}</b></span>
                                 </td>
-                                <td>{{$value->created_at->diffForHumans()}}</td>
+                                <td>{{ $value->updated_at->diffForHumans() }}</td>
                                 <td>
                                     @if ($value->finished_at !== null)
                                         <b>{{ $value->finished_at }}</b>
@@ -43,13 +43,13 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('quizzes.destroy', $value->id) }}" class="btn btn-sm btn-danger"
-                                        title="Delete Quiz">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
                                     <a href="{{ route('quizzes.edit', $value->id) }}" class="btn btn-sm btn-secondary"
                                         title="Edit Quiz">
                                         <i class="text-white fa fa-pen"></i>
+                                    </a>
+                                    <a href="{{ route('quizzes.destroy', $value->id) }}" class="btn btn-sm btn-danger"
+                                        title="Delete Quiz">
+                                        <i class="fa fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>

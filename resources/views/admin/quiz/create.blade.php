@@ -5,28 +5,28 @@
             <form action="{{ route('quizzes.store') }}" method="post">
                 @csrf
                 <div class="form-group my-2">
-                    <label for="title">Quiz Başlığı<span class="text-danger">*</span></label>
+                    <label for="title">Quiz Başlığı<span class="text-danger"> *</span></label>
                     <input type="text" class="form-control" id="title" name="title"
-                        placeholder="enter quiz's title">
+                        placeholder="enter quiz's title" value="{{old('title')}}">
                 </div>
                 <div class="form-group my-2">
                     <label for="description">Quiz Açıklaması</label>
                     <textarea name="description" id="description" cols="30" rows="5" class="form-control"
-                        placeholder="if u want enter quiz's description"></textarea>
+                        placeholder="if u want enter quiz's description">{{old('description')}}</textarea>
                 </div>
                 <div class="form-group my-2" x-data="{ show: false }">
                     <div class="mb-3">
-                        <input @click="show = !show" :aria-expanded="show ? 'true' : 'false'"
+                        <input @if(old('finished_at')) checked @endif @click="show = !show" :aria-expanded="show ? 'true' : 'false'"
                             :class="{ 'active': show }" type="checkbox" name="isFinished" id="isFinished">
                         <label for="isFinished">Quiz Zamanı Olsun Mu?</label>
                     </div>
-                    <div x-show="show" id="finishDiv" class="form-group my-2">
+                    <div @if(old('finished_at')) x-show="true" @else x-show="show" @endif  id="finishDiv" class="form-group my-2">
                         <label for="finished_at">Sona Erme Zamanı</label>
-                        <input type="datetime-local" name="finished_at" id="finished_at" class="form-control">
+                        <input type="datetime-local" name="finished_at" id="finished_at" value="{{old('finished_at')}}" class="form-control">
                     </div>
                 </div>
                 <div class="form-group mt-3">
-                    <small id="helpText" class="text-danger">* Zorunlu Alan</small>
+                    <b><small id="helpText" class="text-danger">* Zorunlu Alan</small></b>
                 </div>
                 <div class="form-group mt-2">
                     <button class="btn btn-success w-100">Kaydet</button>
