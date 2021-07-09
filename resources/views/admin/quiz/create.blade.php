@@ -6,12 +6,12 @@
                 @csrf
                 <div class="form-group my-2">
                     <label for="title">Quiz Başlığı<span class="text-danger"> *</span></label>
-                    <input type="text" class="form-control" id="title" name="title"
+                    <input type="text" class="form-control appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="title" name="title"
                         placeholder="enter quiz's title" value="{{old('title')}}">
                 </div>
                 <div class="form-group my-2">
                     <label for="description">Quiz Açıklaması</label>
-                    <textarea name="description" id="description" cols="30" rows="5" class="form-control"
+                    <textarea name="description" id="description" cols="30" rows="5" class="form-control appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         placeholder="if u want enter quiz's description">{{old('description')}}</textarea>
                 </div>
                 <div class="form-group my-2" x-data="{ show: false }">

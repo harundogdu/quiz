@@ -43,6 +43,10 @@
                                     @endif
                                 </td>
                                 <td class="clearfix">
+                                    <a style="float:left;" href="{{ route('questions.index', $value->id) }}"
+                                        class="mx-1 btn btn-sm btn-info" title="Edit Questions">
+                                        <i class="text-white fa fa-question"></i>
+                                    </a>
                                     <a style="float:left;" href="{{ route('quizzes.edit', $value->id) }}"
                                         class="mx-1 btn btn-sm btn-secondary" title="Edit Quiz">
                                         <i class="text-white fa fa-pen"></i>

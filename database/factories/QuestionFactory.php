@@ -23,11 +23,12 @@ class QuestionFactory extends Factory
     {
         return [
             'quiz_id' =>rand(1,10),
-            'question' => $this->faker->realText(15,2),
+            'question' => $this->faker->realText(50,2),
             'answer1' => $this->faker->realText(20,2),
             'answer2' => $this->faker->realText(20,2),
             'answer3' => $this->faker->realText(20,2),
             'answer4' => $this->faker->realText(20,2),
+            'image' => $this->faker->imageUrl(640,480),
             'correct_answer' => 'answer'.rand(1,4)
         ];
     }
