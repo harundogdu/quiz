@@ -51,7 +51,8 @@
                         @endforeach
                     </div>
                 @endif
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+                {{-- <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg"> --}}
+                <div>
                     {{ $slot }}
                 </div>
             </div>

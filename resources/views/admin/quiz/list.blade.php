@@ -48,7 +48,7 @@
                     @if ($quizzes)
                         @foreach ($quizzes as $key => $value)
                             <tr>
-                                <td><b>{{ $value->title }}</b></td>
+                                <td width="400" ><b>{{ $value->title }}</b></td>
                                 <td class="text-center">
                                     @php
                                         $textErr = '';
@@ -102,7 +102,7 @@
                     @endif
                 </tbody>
             </table>
-            {{ $quizzes->links() }}
+            {{ $quizzes->withQueryString()->links() }}
         </div>
         <div class="card-footer">
             <small class="text-muted">Quiz Oluşturma Ekranı</small>

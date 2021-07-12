@@ -1,15 +1,15 @@
 <x-jet-action-section>
     <x-slot name="title">
-        {{ __('Browser Sessions') }}
+        {{ __('Tarayıcı Oturumları') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Manage and log out your active sessions on other browsers and devices.') }}
+        {{ __('Diğer tarayıcılarda ve cihazlarda etkin oturumlarınızı yönetin ve oturumunuzu kapatın.') }}
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
-            {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
+            {{ __('Gerekirse, tüm cihazlarınızdaki diğer tüm tarayıcı oturumlarınızdan çıkış yapabilirsiniz. Son seanslarınızdan bazıları aşağıda listelenmiştir; ancak, bu liste ayrıntılı olmayabilir. Hesabınızın güvenliğinin ihlal edildiğini düşünüyorsanız, şifrenizi de güncellemelisiniz.') }}
         </div>
 
         @if (count($this->sessions) > 0)
@@ -41,7 +41,7 @@
                                     @if ($session->is_current_device)
                                         <span class="text-green-500 font-semibold">{{ __('This device') }}</span>
                                     @else
-                                        {{ __('Last active') }} {{ $session->last_active }}
+                                        {{ __('Son Görülme') }} {{ $session->last_active }}
                                     @endif
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
 
         <div class="flex items-center mt-5">
             <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Log Out Other Browser Sessions') }}
+                {{ __('Diğer Cihazlardan Çıkış Yap') }}
             </x-jet-button>
 
             <x-jet-action-message class="ml-3" on="loggedOut">
@@ -64,7 +64,7 @@
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                {{ __('Log Out Other Browser Sessions') }}
+                {{ __('Diğer Cihazlardan Çıkış Yap') }}
             </x-slot>
 
             <x-slot name="content">
@@ -89,7 +89,7 @@
                 <x-jet-button class="ml-2"
                             wire:click="logoutOtherBrowserSessions"
                             wire:loading.attr="disabled">
-                    {{ __('Log Out Other Browser Sessions') }}
+                    {{ __('Diğer Cihazlardan Çıkış Yap') }}
                 </x-jet-button>
             </x-slot>
         </x-jet-dialog-modal>
