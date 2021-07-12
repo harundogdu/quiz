@@ -3,7 +3,7 @@
         <div class="clearfix">
             <span class="text-left"><span class="text-danger">Quiz Oluştur</span>
                 <span class="text-right float-end">
-                    <a href="{{ route('quizzes.index') }}" class="btn btn-dark">
+                    <a href="{{ route('quizzes.index') }}" class="btn btn-dark btn-sm">
                         <i class="fa fa-arrow-left"></i> Geri Dön</a>
                 </span>
         </div>

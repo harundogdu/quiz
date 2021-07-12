@@ -1,10 +1,38 @@
 <x-app-layout>
     <x-slot name="header">Quizler</x-slot>
     <div class="card">
+        <div class="card-header">
+            <form method="get">
+                <div class="row">
+                    <div class="col-md-2">
+                        <input name="title" type="text" class="form-control" value="{{ request()->get('title') }}"
+                            placeholder="Quiz Adı">
+                    </div>
+                    <div class="col-md-2">
+                        <select name="status" id="status" class="form-control" onchange="this.form.submit()">
+                            <option value="">Lütfen Seçiniz</option>
+                            <option @if (request()->get('status') === 'published') selected="selected" @endif value="published">Aktif
+                            </option>
+                            <option @if (request()->get('status') === 'passive') selected="selected" @endif value="passive">Pasif
+                            </option>
+                            <option @if (request()->get('status') === 'draft') selected="selected" @endif value="draft">Taslak
+                            </option>
+                        </select>
+                    </div>
+                    @if (request()->get('title') || request()->get('status'))
+                        <div class="col-md-2">
+                            <a href="{{ route('quizzes.index') }}" class="btn btn-secondary">Sıfırla</a>
+                        </div>
+                    @endif
+                    <div class="col text-right">
+                        <a href="{{ route('quizzes.create') }}" class="btn btn-sm btn-primary mb-3">
+                            <i class="fa fa-plus mr-2"></i>Quiz Oluştur
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
         <div class="card-body">
-            <a href="{{ route('quizzes.create') }}" class="btn btn-sm btn-primary mb-3"><i
-                    class="fa fa-plus mr-2"></i>Quiz Oluştur</a>
-            <p class="lead">Quiz Oluşturmak İçin Gerekli Olan Sayfa.</p>
             <table class="table table-bordered my-2 text-center">
                 <thead class="bg-indigo">
                     <tr>
@@ -75,6 +103,9 @@
                 </tbody>
             </table>
             {{ $quizzes->links() }}
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Quiz Oluşturma Ekranı</small>
         </div>
     </div>
 </x-app-layout>

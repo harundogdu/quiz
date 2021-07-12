@@ -1,15 +1,20 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="clearfix">
-            <span class="float-start"><a class="text-danger" href="{{route('questions.index',$quiz->id)}}">{{ $quiz->title }}</a></span>
-            <span class="float-end"><a href="{{route('quizzes.index')}}" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Geri Dön</a></span>
+            <span class="float-start"><a class="text-danger"
+                    href="{{ route('questions.index', $quiz->id) }}">{{ $quiz->title }}</a></span>
+            <span class="float-end"><a href="{{ route('quizzes.index') }}" class="btn btn-dark btn-sm"><i
+                        class="fa fa-arrow-left"></i> Geri Dön</a></span>
         </div>
     </x-slot>
     <div class="card">
+        <div class="card-header">
+            <div class="text-right">
+                <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary mb-3"><i
+                        class="fa fa-plus mr-2"></i>Soru Oluştur</a>
+            </div>
+        </div>
         <div class="card-body">
-            <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary mb-3"><i
-                    class="fa fa-plus mr-2"></i>Soru Oluştur</a>
-            <p class="lead">Quiz Sorusu Oluşturmak İçin Gerekli Olan Sayfa.</p>
             <table class="table table-bordered my-2 text-center">
                 <thead class="bg-indigo">
                     <tr>
@@ -75,6 +80,9 @@
                 </tbody>
             </table>
             {{-- {{ $quizzes->links() }} --}}
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">Quiz Sorusu Oluşturma Ekranı</small>
         </div>
     </div>
 </x-app-layout>
