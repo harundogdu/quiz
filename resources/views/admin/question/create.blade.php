@@ -2,7 +2,9 @@
     <x-slot name="header">
         <div class="clearfix d-flex justify-content-between">
             <span>Soru Oluştur <i class="text-primary fa fa-plus"></i></span>
-            <span class="font-weight-bold text-danger text-right flex-grow-1">{{ $quiz->title }}</span>
+            <span class="font-weight-bold text-danger text-right flex-grow-1">
+                <a class="text-danger" href="{{route('questions.index',$quiz->id)}}">{{ $quiz->title }}</a>
+            </span>
         </div>
     </x-slot>
     <div class="card">

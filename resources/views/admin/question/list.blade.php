@@ -1,21 +1,26 @@
 <x-app-layout>
-    <x-slot name="header"><span class="text-danger">{{ $quiz->title }}</span> 'e ait sorular</x-slot>
+    <x-slot name="header">
+        <div class="clearfix">
+            <span class="float-start"><a class="text-danger" href="{{route('questions.index',$quiz->id)}}">{{ $quiz->title }}</a></span>
+            <span class="float-end"><a href="{{route('quizzes.index')}}" class="btn btn-dark"><i class="fa fa-arrow-left"></i> Geri Dön</a></span>
+        </div>
+    </x-slot>
     <div class="card">
         <div class="card-body">
             <a href="{{ route('questions.create', $quiz->id) }}" class="btn btn-sm btn-primary mb-3"><i
                     class="fa fa-plus mr-2"></i>Soru Oluştur</a>
             <p class="lead">Quiz Sorusu Oluşturmak İçin Gerekli Olan Sayfa.</p>
-            <table class="table table-bordered my-2">
-                <thead>
+            <table class="table table-bordered my-2 text-center">
+                <thead class="bg-indigo">
                     <tr>
-                        <th>Fotoğraf</th>
-                        <th>Soru</th>
-                        <th>Cevap 1</th>
-                        <th>Cevap 2</th>
-                        <th>Cevap 3</th>
-                        <th>Cevap 4</th>
-                        <th width="125">Doğru Cevap</th>
-                        <th width="150">Soru Eylemleri</th>
+                        <th class="text-white">Fotoğraf</th>
+                        <th class="text-white">Soru</th>
+                        <th class="text-white">Cevap 1</th>
+                        <th class="text-white">Cevap 2</th>
+                        <th class="text-white">Cevap 3</th>
+                        <th class="text-white">Cevap 4</th>
+                        <th class="text-white" width="125">Doğru Cevap</th>
+                        <th class="text-white" width="150">Soru Eylemleri</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -44,7 +49,7 @@
                                     <td class="clearfix">
                                         <a style="float:left;"
                                             href="{{ route('questions.edit', [$quiz->id, $question->id]) }}"
-                                            class="mx-1 btn btn-sm btn-secondary" title="Edit Quiz">
+                                            class="mx-1 btn btn-sm btn-secondary" title="Edit Question">
                                             <i class="text-white fa fa-pen"></i>
                                         </a>
                                         <form style="float:left;"
@@ -52,7 +57,7 @@
                                             method="post">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="mx-1 btn btn-sm btn-danger" title="Delete Quiz">
+                                            <button class="mx-1 btn btn-sm btn-danger" title="Delete Question">
                                                 <i class="fa fa-trash"></i>
                                             </button>
                                         </form>

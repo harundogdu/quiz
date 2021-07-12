@@ -5,39 +5,48 @@
             <a href="{{ route('quizzes.create') }}" class="btn btn-sm btn-primary mb-3"><i
                     class="fa fa-plus mr-2"></i>Quiz Oluştur</a>
             <p class="lead">Quiz Oluşturmak İçin Gerekli Olan Sayfa.</p>
-            <table class="table table-bordered my-2">
-                <thead>
+            <table class="table table-bordered my-2 text-center">
+                <thead class="bg-indigo">
                     <tr>
-                        <th>Quiz Adı</th>
-                        <th>Quiz Durumu</th>
-                        <th>Quiz Son İşlem Zamanı</th>
-                        <th>Quiz Sona Erme Zamanı</th>
-                        <th>Quiz Eylemleri</th>
+                        <th class="text-white">Quiz Adı</th>
+                        <th class="text-white">Quiz Durumu</th>
+                        <th class="text-white">Soru Sayısı</th>
+                        <th class="text-white">Quiz Son İşlem Zamanı</th>
+                        <th class="text-white">Quiz Sona Erme Zamanı</th>
+                        <th class="text-white">Quiz Eylemleri</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($quizzes)
                         @foreach ($quizzes as $key => $value)
                             <tr>
-                                <td>{{ $value->title }}</td>
-                                <td>
+                                <td><b>{{ $value->title }}</b></td>
+                                <td class="text-center">
                                     @php
                                         $textErr = '';
+                                        $textMessage = '';
                                         if ($value->status === 'draft') {
-                                            $textErr = 'text-primary';
+                                            $textErr = 'bg-warning text-dark';
+                                            $textMessage = 'Taslak';
                                         } elseif ($value->status === 'published') {
-                                            $textErr = 'text-success';
+                                            $textErr = 'bg-success';
+                                            $textMessage = 'Aktif';
                                         } else {
-                                            $textErr = 'text-danger';
+                                            $textErr = 'bg-danger';
+                                            $textMessage = 'Pasif';
                                         }
                                         
                                     @endphp
-                                    <span class="{{ $textErr }}"><b>{{ $value->status }}</b></span>
+                                    <span class="badge rounded-pill {{ $textErr }}">{{ $textMessage }}</span>
                                 </td>
-                                <td>{{ $value->updated_at->diffForHumans() }}</td>
+                                <td>{{ $value->questions_count }}</td>
+                                <td><span
+                                        title="{{ $value->updated_at }}">{{ $value->updated_at->diffForHumans() }}</span>
+                                </td>
                                 <td>
                                     @if ($value->finished_at !== null)
-                                        <b>{{ $value->finished_at }}</b>
+                                        <b
+                                            title="{{ $value->finished_at }}">{{ $value->finished_at->diffForHumans() }}</b>
                                     @else
                                         <span>Sona Erme Tarihi Yok</span>
                                     @endif
@@ -48,7 +57,7 @@
                                         <i class="text-white fa fa-question"></i>
                                     </a>
                                     <a style="float:left;" href="{{ route('quizzes.edit', $value->id) }}"
-                                        class="mx-1 btn btn-sm btn-secondary" title="Edit Quiz">
+                                        class="mx-1 btn btn-sm btn-dark" title="Edit Quiz">
                                         <i class="text-white fa fa-pen"></i>
                                     </a>
                                     <form style="float:left;" action="{{ route('quizzes.destroy', $value->id) }}"
