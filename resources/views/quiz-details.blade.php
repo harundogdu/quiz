@@ -38,7 +38,7 @@
                 <div class="card-body">
                     <h5 class="display-6 font-32">{{ $quiz->title }}</h5>
                     <p class="lead my-3 font-18">{{ $quiz->description }}</p>
-                    <a href="#" class="btn btn-indigo w-100 mt-3">Quiz'e Katıl</a>
+                    <a href="{{route('quiz-join',$quiz->slug)}}" class="btn btn-indigo w-100 mt-3">Quiz'e Katıl</a>
                 </div>
             </div>
         </div>
