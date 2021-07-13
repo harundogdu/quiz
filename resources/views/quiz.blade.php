@@ -12,7 +12,8 @@
     <div class="card">
         <div class="row">
             <div class="col-md-8">
-                <form action="" method="post">
+                <form action="{{route('quiz-result',$quiz->slug)}}" method="post">
+                    @csrf
                     <ol class="list-group list-group-numbered">
                         @foreach ($quiz->questions as $question)
                             <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -24,7 +25,7 @@
 
                                     <div class="form-check my-2">
                                         <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="quiz_{{ $question->id }}_1" value="answer1">
+                                            id="quiz_{{ $question->id }}_1" value="answer1" required>
                                         <label class="form-check-label" for="quiz_{{ $question->id }}_1">
                                             {{ $question->answer1 }}
                                         </label>
@@ -32,7 +33,7 @@
 
                                     <div class="form-check my-2">
                                         <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="quiz_{{ $question->id }}_2" value="answer2">
+                                            id="quiz_{{ $question->id }}_2" value="answer2" required>
                                         <label class="form-check-label" for="quiz_{{ $question->id }}_2">
                                             {{ $question->answer2 }}
                                         </label>
@@ -40,7 +41,7 @@
 
                                     <div class="form-check my-2">
                                         <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="quiz_{{ $question->id }}_3" value="answer3">
+                                            id="quiz_{{ $question->id }}_3" value="answer3" required>
                                         <label class="form-check-label" for="quiz_{{ $question->id }}_3">
                                             {{ $question->answer3 }}
                                         </label>
@@ -48,7 +49,7 @@
 
                                     <div class="form-check my-2">
                                         <input class="form-check-input" type="radio" name="{{ $question->id }}"
-                                            id="quiz_{{ $question->id }}_4" value="answer4">
+                                            id="quiz_{{ $question->id }}_4" value="answer4" required>
                                         <label class="form-check-label" for="quiz_{{ $question->id }}_4">
                                             {{ $question->answer4 }}
                                         </label>
