@@ -9,17 +9,16 @@
             </span>
         </div>
     </x-slot>
-    <div class="card">
         <div class="row">
             <div class="col-md-8">
                 <form action="{{route('quiz-result',$quiz->slug)}}" method="post">
                     @csrf
                     <ol class="list-group list-group-numbered">
                         @foreach ($quiz->questions as $question)
-                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <li class="list-group-item d-flex justify-content-between align-items-start my-2">
                                 <div class="ms-2 me-auto">
                                     <div class="fw-bold">{{ $question->question }}</div>
-                                    <img src="{{ $question->image }}" class="my-3 img-responsive w-50"
+                                    <img src="{{ asset($question->image) }}" class="my-3 img-responsive w-50"
                                         alt="{{ $question->question }}">
                                     {{-- items --}}
 
@@ -73,5 +72,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </x-app-layout>

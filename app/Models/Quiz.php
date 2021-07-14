@@ -13,7 +13,16 @@ class Quiz extends Model
     use Sluggable;
     protected $fillable = ['title', 'description', 'finished_at'];
     protected $dates = ['finished_at'];
-    protected $appends = ['details'];
+    protected $appends = ['details','my_rank'];
+
+    public function getmyRankAttribute(){
+        foreach($this->results()->orderByDesc('point')->get() as $key => $value){
+            if($value->user_id === auth()->user()->id){
+                return ++$key;
+            }
+        }
+        return null;
+    }    
 
     public function getDetailsAttribute(){
         if($this->results()->count() > 0){
@@ -23,6 +32,10 @@ class Quiz extends Model
             ]; 
         }
         return null;
+    }
+
+    public function topTen(){
+        return $this->results()->orderByDesc('point')->take(10);
     }
 
     public function results(){
