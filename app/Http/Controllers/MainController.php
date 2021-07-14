@@ -16,8 +16,8 @@ class MainController extends Controller
     }
     public function quizDetails($slug)
     {
-        $quiz = Quiz::whereSlug($slug)->withCount('questions')->first() ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
-        return view('quiz-details', compact('quiz'));
+         $quiz = Quiz::whereSlug($slug)->with('my_results')->withCount('questions')->first() ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
+         return view('quiz-details', compact('quiz'));
     }
     public function quizJoin($slug)
     {
@@ -36,11 +36,11 @@ class MainController extends Controller
             }
         }
 
-        $point = round(100 / (count($quiz->questions)) * $correct);
+        $point = round(100 / (count($quiz->questions)) * $correct);        
         $wrong = count($quiz->questions) - $correct;
 
         Result::create([
-            'user_id' => Auth::id(),
+            'user_id' => auth()->user()->id,
             'quiz_id' => $quiz->id,
             'point' => $point,
             'correct' => $correct,
