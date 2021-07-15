@@ -60,7 +60,8 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        //
+        $quiz = Quiz::withCount('questions')->find($id) ?? abort(404,'Böyle Bir Quiz Bulunamadı!');
+        return view('admin.quiz.show', compact('quiz'));
     }
 
     /**

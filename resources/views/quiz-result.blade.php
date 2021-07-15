@@ -15,7 +15,7 @@
                 @csrf
                 <ol class="list-group">
                     <div class="alert alert-warning">
-                        <p class="h4">Puanınız : <strong>{{$quiz->my_results->point}}</strong></p>
+                        <p class="h4">Puanınız : <strong>{{ $quiz->my_results->point }}</strong></p>
                         <span class="mr-2"><i class="fa fa-check text-success"></i> Doğru</span>
                         <span class="mx-2"><i class="fa fa-times text-danger"></i> Yanlış</span>
                         <span class="ml-2"><i class="fa fa-circle text-purple"></i> Seçiminiz</span>
@@ -78,7 +78,7 @@
                                         {{ $question->answer4 }}
                                     </label>
                                 </div>
-
+                                <small class="text-muted">Katılanların <strong>%{{$question->true_percent}}</strong>'i Doğru Cevapladı</small>
                                 {{-- items end --}}
                             </div>
                             <span title="{{ $question->created_at }}" class="badge bg-primary rounded-pill">?</span>

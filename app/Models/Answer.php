@@ -10,5 +10,5 @@ class Answer extends Model
     use HasFactory;
     protected $fillable = ['user_id','question_id','answer'];
 
-    public $timestamps = false;   
+    public $timestamps = false;  
 }

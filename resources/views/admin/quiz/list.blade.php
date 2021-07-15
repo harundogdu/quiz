@@ -34,21 +34,21 @@
         </div>
         <div class="card-body">
             <table class="table table-bordered my-2 text-center">
-                <thead class="bg-indigo">
+                <thead class="text-dark">
                     <tr>
-                        <th class="text-white">Quiz Adı</th>
-                        <th class="text-white">Quiz Durumu</th>
-                        <th class="text-white">Soru Sayısı</th>
-                        <th class="text-white">Quiz Son İşlem Zamanı</th>
-                        <th class="text-white">Quiz Sona Erme Zamanı</th>
-                        <th class="text-white">Quiz Eylemleri</th>
+                        <th class="text-dark">Quiz Adı</th>
+                        <th class="text-dark">Quiz Durumu</th>
+                        <th class="text-dark">Soru Sayısı</th>
+                        <th class="text-dark">Quiz Son İşlem Zamanı</th>
+                        <th class="text-dark">Quiz Sona Erme Zamanı</th>
+                        <th class="text-dark">Quiz Eylemleri</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($quizzes)
                         @foreach ($quizzes as $key => $value)
                             <tr>
-                                <td width="400" ><b>{{ $value->title }}</b></td>
+                                <td width="400"><b>{{ $value->title }}</b></td>
                                 <td class="text-center">
                                     @php
                                         $textErr = '';
@@ -57,8 +57,13 @@
                                             $textErr = 'bg-warning text-dark';
                                             $textMessage = 'Taslak';
                                         } elseif ($value->status === 'published') {
-                                            $textErr = 'bg-success';
-                                            $textMessage = 'Aktif';
+                                            if ($value->finished_at < now() && $value->finished_at != null) {
+                                                $textErr = 'bg-indigo';
+                                                $textMessage = 'Süresi Doldu';
+                                            } else {
+                                                $textErr = 'bg-success';
+                                                $textMessage = 'Aktif';
+                                            }
                                         } else {
                                             $textErr = 'bg-danger';
                                             $textMessage = 'Pasif';
@@ -80,6 +85,10 @@
                                     @endif
                                 </td>
                                 <td class="clearfix">
+                                    <a style="float:left;" href="{{ route('quizzes.show', $value->id) }}"
+                                        class="mx-1 btn btn-sm btn-warning" title="Show Quiz Details">
+                                        <i class="text-white fa fa-info"></i>
+                                    </a>
                                     <a style="float:left;" href="{{ route('questions.index', $value->id) }}"
                                         class="mx-1 btn btn-sm btn-info" title="Edit Questions">
                                         <i class="text-white fa fa-question"></i>

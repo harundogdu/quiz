@@ -13,7 +13,8 @@ class MainController extends Controller
     public function index()
     {
         $quizzes = Quiz::where('status', 'published')->withCount('questions')->orderBy('updated_at', 'DESC')->paginate(5);
-        return view('dashboard', compact('quizzes'));
+        $results = count(auth()->user()->results) > 0 ? auth()->user()->results : null;
+        return view('dashboard', compact('quizzes','results'));
     }
     public function quizDetails($slug)
     {
@@ -24,7 +25,7 @@ class MainController extends Controller
     {
         $quiz = Quiz::with('questions.my_answer', 'results', 'my_results')->whereSlug($slug)->first();
 
-        if ($quiz->my_results != null) {
+        if ($quiz->my_results) {
             return  view('quiz-result', compact('quiz'));
         }
 
