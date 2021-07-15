@@ -37,9 +37,9 @@
                         </li>
                     @endif
                 </ul>
-                <ul class="list-group my-3">                    
+                <ul class="list-group my-3">
                     @if ($quiz->myRank)
-                    <h5 class="h4">Sınav Sonuçlarınız</h5>
+                        <h5 class="h4">Sınav Sonuçlarınız</h5>
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Sıralamanız
                             <span class="badge bg-asphalt rounded-pill">#{{ $quiz->myRank }}</span>
@@ -86,7 +86,8 @@
                         <h5 class="display-6 font-32">{{ $quiz->title }}</h5>
                         <p class="lead my-3 font-18">{{ $quiz->description }}</p>
                         @if ($quiz->my_results != null)
-                            <a href="#" class="btn btn-dark w-100 mt-3">Quiz'i Görüntüle</a>
+                            <a href="{{ route('quiz-join', $quiz->slug) }}" class="btn btn-dark w-100 mt-3">Quiz'i
+                                Görüntüle</a>
                         @else
                             <a href="{{ route('quiz-join', $quiz->slug) }}" class="btn btn-indigo w-100 mt-3">Quiz'e
                                 Katıl</a>

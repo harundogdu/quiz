@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Quiz;
 use App\Models\Result;
 use Illuminate\Http\Request;
@@ -16,12 +17,17 @@ class MainController extends Controller
     }
     public function quizDetails($slug)
     {
-        $quiz = Quiz::whereSlug($slug)->with('my_results','results','topTen.user')->withCount('questions')->first() ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
-         return view('quiz-details', compact('quiz'));
+        $quiz = Quiz::whereSlug($slug)->with('my_results', 'results', 'topTen.user')->withCount('questions')->first() ?? abort(404, 'Böyle Bir Quiz Bulunamadı!');
+        return view('quiz-details', compact('quiz'));
     }
     public function quizJoin($slug)
     {
-        $quiz = Quiz::with('questions')->whereSlug($slug)->first();
+        $quiz = Quiz::with('questions.my_answer', 'results', 'my_results')->whereSlug($slug)->first();
+
+        if ($quiz->my_results != null) {
+            return  view('quiz-result', compact('quiz'));
+        }
+
         return view('quiz', compact('quiz'));
     }
     public function quizResult(Request $request, $slug)
@@ -30,13 +36,18 @@ class MainController extends Controller
         $correct = 0;
 
         foreach ($quiz->questions as $question) {
-            echo $question->id . " - " . $question->correct_answer . " - " . $request->post($question->id) . "<br>";
+            /*   echo $question->id . " - " . $question->correct_answer . " - " . $request->post($question->id) . "<br>"; */
             if ($request->post($question->id) === $question->correct_answer) {
                 $correct++;
             }
+            Answer::create([
+                'user_id' => auth()->user()->id,
+                'question_id' => $question->id,
+                'answer' => $request->post($question->id)
+            ]);
         }
 
-        $point = round(100 / (count($quiz->questions)) * $correct);        
+        $point = round(100 / (count($quiz->questions)) * $correct);
         $wrong = count($quiz->questions) - $correct;
 
         Result::create([
@@ -47,6 +58,6 @@ class MainController extends Controller
             'wrong' => $wrong
         ]);
 
-        return redirect()->route('quiz-details',$quiz->slug)->withSuccess("Quiz'i Başarıyla Bitirdiniz. Puanınız : " . $point);
+        return redirect()->route('quiz-details', $quiz->slug)->withSuccess("Quiz'i Başarıyla Bitirdiniz. Puanınız : " . $point);
     }
 }

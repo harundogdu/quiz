@@ -22,7 +22,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 /* Admin Operations */
-
 Route::group(['middleware' => ['auth', 'isAdmin'], 'prefix' => 'admin'], function () {
     Route::resource('quizzes', QuizController::class);
     Route::resource('quiz/{quiz_id}/questions',QuestionController::class);

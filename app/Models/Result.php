@@ -13,4 +13,7 @@ class Result extends Model
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
+   /*  public function answers(){
+        return $this->belongsTo('App\Models\Answer');
+    } */
 }
