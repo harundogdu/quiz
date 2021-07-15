@@ -36,18 +36,20 @@
             <table class="table table-bordered my-2 text-center">
                 <thead class="text-dark">
                     <tr>
+                        <th class="text-dark">Quiz Fotoğrafı</th>
                         <th class="text-dark">Quiz Adı</th>
                         <th class="text-dark">Quiz Durumu</th>
                         <th class="text-dark">Soru Sayısı</th>
                         <th class="text-dark">Quiz Son İşlem Zamanı</th>
                         <th class="text-dark">Quiz Sona Erme Zamanı</th>
-                        <th class="text-dark">Quiz Eylemleri</th>
+                        <th width="200" class="text-dark">Quiz Eylemleri</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if ($quizzes)
                         @foreach ($quizzes as $key => $value)
                             <tr>
+                                <td><img src="{{ asset($value->image) }}" class="img-responsive" alt=""></td>
                                 <td width="400"><b>{{ $value->title }}</b></td>
                                 <td class="text-center">
                                     @php

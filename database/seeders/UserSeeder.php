@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt(12345678), // 12345678
             'remember_token' => Str::random(10),
         ]);
-        \App\Models\User::factory(10)->create();
+        /* \App\Models\User::factory(10)->create(); */
     }
 }

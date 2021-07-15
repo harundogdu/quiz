@@ -26,6 +26,7 @@ class QuizFactory extends Factory
         return [
             'title' => $title,
             'slug' => Str::slug($title),
+            'image' => $this->faker->imageUrl(640,480),
             'description' => $this->faker->realText(200,2)            
         ];
     }

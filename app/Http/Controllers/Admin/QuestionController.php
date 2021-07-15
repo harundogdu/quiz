@@ -97,7 +97,7 @@ class QuestionController extends Controller
         Quiz::find($quiz_id) ?? abort(404,'Böyle Bir Quiz Bulunamadı!');
         $question = Question::find($question_id) ?? abort(404,'Böyle Bir Question Bulunamadı!'); */
         //  2.Yol
-        $question = Quiz::find($quiz_id)->questions()->whereId($question_id)->first() ?? abort(404, 'Böyle Bir Sau Bulunamadı!');
+        $question = Quiz::find($quiz_id)->questions()->whereId($question_id)->first() ?? abort(404, 'Böyle Bir Sayfa Bulunamadı!');
 
         $question->question = $request->question;
         $question->answer1 = $request->answer1;

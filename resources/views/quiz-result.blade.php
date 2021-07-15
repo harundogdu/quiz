@@ -10,7 +10,7 @@
         </div>
     </x-slot>
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <form action="{{ route('quiz-result', $quiz->slug) }}" method="post">
                 @csrf
                 <ol class="list-group">
@@ -31,8 +31,10 @@
                                     @endif
                                     {{ $loop->iteration }}-{{ $question->question }}
                                 </div>
+                                @if($question->image)
                                 <img src="{{ asset($question->image) }}" class="my-3 img-responsive w-50"
-                                    alt="{{ $question->question }}">
+                                alt="{{ $question->question }}">
+                                @endif
                                 {{-- items --}}
 
                                 <div class="form-check my-2">
@@ -87,12 +89,12 @@
                 </ol>
             </form>
         </div>
-        <div class="col-md-4">
+        {{-- <div class="col-md-4">
             <div class="card">
                 <ul class="list-group">
                     <li class="list-group-item">Diğer Testler</li>
                 </ul>
             </div>
-        </div>
+        </div> --}}
     </div>
 </x-app-layout>

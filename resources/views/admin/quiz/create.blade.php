@@ -10,13 +10,19 @@
     </x-slot>
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('quizzes.store') }}" method="post">
+            <form action="{{ route('quizzes.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group my-2">
                     <label for="title">Quiz Başlığı<span class="text-danger"> *</span></label>
                     <input type="text"
                         class="form-control appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="title" name="title" placeholder="enter quiz's title" value="{{ old('title') }}">
+                </div>
+                <div class="form-group my-2">
+                    <div class="form-group my-2">
+                        <label for="image">Quiz Fotoğrafı</label>
+                        <input type="file" name="image" id="image" class="my-2 form-control">
+                    </div>
                 </div>
                 <div class="form-group my-2">
                     <label for="description">Quiz Açıklaması</label>

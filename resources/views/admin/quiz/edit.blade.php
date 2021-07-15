@@ -10,13 +10,22 @@
     </x-slot>
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('quizzes.update', $quiz->id) }}" method="post">
+            <form action="{{ route('quizzes.update', $quiz->id) }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="form-group my-2">
                     <label for="title">Quiz Başlığı<span class="text-danger">*</span></label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="enter quiz's title"
                         value="{{ $quiz->title }}">
+                </div>
+                <div class="form-group">
+                    <div class="form-group my-2">
+                        <label for="image">Soru Fotoğrafı</label>
+                        @if ($quiz->image)
+                            <img class="img-responsive w-50" src="{{ asset($quiz->image) }}" alt="">
+                        @endif
+                        <input type="file" name="image" id="image" class="my-2 form-control">
+                    </div>
                 </div>
                 <div class="form-group my-2">
                     <label for="description">Quiz Açıklaması</label>
