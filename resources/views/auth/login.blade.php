@@ -42,6 +42,7 @@
                 <x-jet-button class="ml-4">
                     {{ __('Giriş Yap') }}
                 </x-jet-button>
+                
             </div>
         </form>
     </x-jet-authentication-card>

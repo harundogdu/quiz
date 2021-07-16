@@ -6,13 +6,13 @@ use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
 });
 
-/* Route::middleware(['auth:sanctum', 'verified'])->get('/panel', function () {
-    return view('dashboard');
-})->name('dashboard'); */
-
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {  
+    return view('auth.login');
+});
+ */
 /* Main Controller Operations */
 Route::middleware(['auth'])->group(function () {
     Route::get('/panel',[MainController::class,'index'])->name('dashboard');
