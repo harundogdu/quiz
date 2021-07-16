@@ -12,7 +12,7 @@ class MainController extends Controller
 {
     public function index()
     {
-        $quizzes = Quiz::where('status', 'published')->withCount('questions')->orderBy('updated_at', 'DESC')->paginate(2);
+        $quizzes = Quiz::where('status', 'published')->withCount('questions')->orderBy('updated_at', 'DESC')->paginate(3);
         $results = count(auth()->user()->results) > 0 ? auth()->user()->results : null;
         return view('dashboard', compact('quizzes', 'results'));
     }

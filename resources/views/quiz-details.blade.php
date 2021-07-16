@@ -89,7 +89,7 @@
                             <a href="{{ route('quiz-join', $quiz->slug) }}" class="btn btn-dark w-100 mt-3">Quiz'i
                                 Görüntüle</a>
                         @else
-                            <a href="{{ route('quiz-join', $quiz->slug) }}" class="btn btn-indigo w-100 mt-3">Quiz'e
+                            <a href="{{ route('quiz-join', $quiz->slug) }}" class="btn btn-warning w-100 mt-3">Quiz'e
                                 Katıl</a>
                         @endif
                     </div>

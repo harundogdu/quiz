@@ -21,9 +21,9 @@
                         <span class="ml-2"><i class="fa fa-circle text-purple"></i> Seçiminiz</span>
                     </div>
                     @foreach ($quiz->questions as $question)
-                        <li class="list-group-item d-flex justify-content-between align-items-start my-2">
+                        <li class="list-group-item d-flex justify-content-between align-items-start my-2 p-4">
                             <div class="ms-2 me-auto">
-                                <div class="fw-bold">
+                                <div class="h4 fw-bold">
                                     @if ($question->correct_answer === $question->my_answer->answer)
                                         <i class="fa fa-check text-success"></i>
                                     @else
@@ -39,51 +39,50 @@
 
                                 <div class="form-check my-2">
                                     @if ($question->correct_answer === 'answer1')
-                                        <i class="fa fa-check text-success"></i>
+                                        <i class="fa fa-check font-18 text-success"></i>
                                     @elseif($question->my_answer->answer == 'answer1')
-                                        <i class="fa fa-circle text-purple"></i>
+                                        <i class="fa fa-circle font-18 text-purple"></i>
                                     @endif
-                                    <label class="form-check-label" for="quiz_{{ $question->id }}_1">
+                                    <label class="h5 form-check-label" for="quiz_{{ $question->id }}_1">
                                         {{ $question->answer1 }}
                                     </label>
                                 </div>
 
                                 <div class="form-check my-2">
                                     @if ($question->correct_answer === 'answer2')
-                                        <i class="fa fa-check text-success"></i>
+                                        <i class="fa fa-check font-18 text-success"></i>
                                     @elseif($question->my_answer->answer == 'answer2')
-                                        <i class="fa fa-circle text-purple"></i>
+                                        <i class="fa fa-circle font-18 text-purple"></i>
                                     @endif
-                                    <label class="form-check-label" for="quiz_{{ $question->id }}_2">
+                                    <label class="h5 form-check-label" for="quiz_{{ $question->id }}_2">
                                         {{ $question->answer2 }}
                                     </label>
                                 </div>
 
                                 <div class="form-check my-2">
                                     @if ($question->correct_answer === 'answer3')
-                                        <i class="fa fa-check text-success"></i>
+                                        <i class="fa fa-check font-18 text-success"></i>
                                     @elseif($question->my_answer->answer == 'answer3')
-                                        <i class="fa fa-circle text-purple"></i>
+                                        <i class="fa fa-circle font-18 text-purple"></i>
                                     @endif
-                                    <label class="form-check-label" for="quiz_{{ $question->id }}_3">
+                                    <label class="h5 form-check-label" for="quiz_{{ $question->id }}_3">
                                         {{ $question->answer3 }}
                                     </label>
                                 </div>
 
                                 <div class="form-check my-2">
                                     @if ($question->correct_answer === 'answer4')
-                                        <i class="fa fa-check text-success"></i>
+                                        <i class="fa fa-check font-18 text-success"></i>
                                     @elseif($question->my_answer->answer == 'answer4')
-                                        <i class="fa fa-circle text-purple"></i>
+                                        <i class="fa fa-circle font-18 text-purple"></i>
                                     @endif
-                                    <label class="form-check-label" for="quiz_{{ $question->id }}_4">
+                                    <label class="h5 form-check-label" for="quiz_{{ $question->id }}_4">
                                         {{ $question->answer4 }}
                                     </label>
                                 </div>
                                 <small class="text-muted">Katılanların <strong>%{{$question->true_percent}}</strong>'i Doğru Cevapladı</small>
                                 {{-- items end --}}
                             </div>
-                            <span title="{{ $question->created_at }}" class="badge bg-primary rounded-pill">?</span>
                         </li>
                     @endforeach
                 </ol>

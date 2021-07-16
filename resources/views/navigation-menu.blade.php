@@ -6,14 +6,15 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <span class="display-5"><strong>Qui<span class="text-warning">zz</span>ers</strong></span>
+                        <i class="fas fa-question fa-2x"></i>
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Quizzers') }}
+                        {{ __('Son Quizler') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -104,9 +105,9 @@
                         <x-slot name="content">
                             {{-- Admin İşlemleri --}}
                             @if (auth()->user()->type == 'admin')
-                            <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Admin Paneli') }}
-                            </div>                           
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('Admin Paneli') }}
+                                </div>
                                 <x-jet-dropdown-link href="{{ route('quizzes.index') }}">
                                     Quizler
                                 </x-jet-dropdown-link>

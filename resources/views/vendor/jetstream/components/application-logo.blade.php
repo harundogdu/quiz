@@ -1,0 +1,1 @@
+<img src="{{public_path('uploads/futbol-sorulari.jpg')}}" alt="">

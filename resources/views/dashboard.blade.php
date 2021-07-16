@@ -30,7 +30,7 @@
                                     <div class="postcard__preview-txt">
                                         {{ Str::limit($quiz->description, 200, '...') }}</div>
                                     <ul class="postcard__tagbox">
-                                        <li class="tag__item"><i
+                                        <li title="Tavsiye Edilen Okuma Süresi" class="tag__item"><i
                                                 class="fas fa-clock mr-2"></i>{{ round(($quiz->questions_count * 30) / 60) }}
                                             dakika</li>
                                         <li class="tag__item play blue">

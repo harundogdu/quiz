@@ -66,7 +66,7 @@
 
                                 {{-- items end --}}
                             </div>
-                            <span title="{{ $question->created_at }}" class="badge bg-primary rounded-pill">?</span>
+                            <span title="{{ $question->created_at }}" class="badge bg-warning rounded-pill">?</span>
                         </li>
                     @endforeach
                     <button type="submit" class="btn btn-dark w-100 mb-2">Quiz'i Bitir</button>
